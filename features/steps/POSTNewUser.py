@@ -34,3 +34,27 @@ def send_request_create_user(context):
   response = requests.post('https://gorest.co.in/public-api/users')
   context.response_body = response.json()
   context.status_code = response.status_code
+
+@then('user should received code 200 status code')
+def status_code_response(context):
+  assert context.status_code == 200
+
+@step('The user name is "Annisa" in response body')
+def name_response(context):
+  assert context.response_body['data']['name'] == "Annisa"
+
+@step('The user email is "<email>" in response body')
+def email_response(context):
+  assert context.response_body['data']['email'] == "<email>"
+
+@step('The User password is "haloannisa" in response body')
+def password_response(context):
+  assert context.response_body['data']['password'] == "haloannisa"
+
+@step('The user gender is "female" in response body')
+def gender_response(context):
+  assert context.response_body['data']['gender'] == "Female"
+
+@step('The user status is "active" in response body')
+def status_response(context):
+  assert context.response_body['data']['status'] == "Active"
